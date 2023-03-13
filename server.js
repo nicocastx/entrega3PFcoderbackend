@@ -90,7 +90,7 @@ const twilioClient = twilio(process.env.ACCSID, process.env.AUTHTOK);
 //inicializacion express
 const app = express();
 
-const MODO = "fork";
+const MODO = process.env.MODO || "fork";
 const PORT = process.env.PORT || 8080;
 
 let usuarios = [];
@@ -116,7 +116,7 @@ app.use(
     },
     secret: process.env.SECRETSESSION,
     resave: false,
-    saveUnitialized: false,
+    saveUninitialized: false,
   })
 );
 
@@ -280,7 +280,8 @@ if (MODO === "cluster" && cluster.isPrimary) {
     })
   );
 
-  app.get("/", isAuth, (req, res) => {
+    //!reponer isauth y borrar supuesto cliente
+  app.get("/",isAuth, (req, res) => {
     cProds.getAll().then((prods) => {
       const infoUser = usuarios.find(
         (usuario) => usuario.email == req.session.passport.user
@@ -363,8 +364,7 @@ if (MODO === "cluster" && cluster.isPrimary) {
       cCarrito.save(emailCliente)
     }
     });
-    
-    res.send('La solicitud se proceso con exito')
+    res.redirect('/')
   });
 
   app.get("*", (req, res) => {
