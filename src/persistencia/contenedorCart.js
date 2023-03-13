@@ -20,7 +20,7 @@ export class contenedorCarrito extends contenedorDBMA {
     return this.model.find({ emailCliente: emailC });
   }
 
-  async deleteById(emailC) {
+  async deleteByEmailC(emailC) {
     return await this.model.deleteOne({ emailCliente: emailC });
   }
 

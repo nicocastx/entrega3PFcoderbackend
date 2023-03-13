@@ -3,9 +3,9 @@ import * as APICarrito from '../apis/apiCarrito.js'
 
 const routerCarrito = Router()
 
-routerCarrito.post('/', APICarrito.postCarrito)
+routerCarrito.post('/:emailC', APICarrito.postCarrito)
 
-routerCarrito.delete('/:id', APICarrito.delCarrito)
+routerCarrito.delete('/:emailC', APICarrito.delCarrito)
 
 routerCarrito.get('/:emailC/productos', APICarrito.getByClientCarrito)
 

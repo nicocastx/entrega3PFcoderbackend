@@ -1,9 +1,12 @@
 //const {Carrito, dbCarritos} = require('../persistencia/carritoPerst')
-import {cCarrito} from '../persistencia/contenedorCart.js'
+import {contenedorCarrito} from '../persistencia/contenedorCart.js'
 
-const DBCarritos = new cCarrito()
+const DBCarritos = new contenedorCarrito()
 
 const postCarrito = (req, res) =>{
+    const {
+        emailC
+    } = req.params
     DBCarritos.save(emailC)
     .then(id => res.send({idCarrito : id}))
 }
@@ -40,13 +43,13 @@ const getByClientCarrito = (req, res) =>{
 
 const postProdCarrito = (req, res) =>{
     const {emailC, idprod} = req.params
-    DBCarritos.addProdCarrito(id, idprod)
+    DBCarritos.addProdCarrito(emailC, idprod)
     res.send({exito: 'exito'})
 }
 
 const delProdCarrito = (req, res) =>{
     const {emailC, idprod} = req.params
-    DBCarritos.delProdCarrito(id, idprod)
+    DBCarritos.delProdCarrito(emailC, idprod)
     res.send({exito: 'exito'})
 }
 
