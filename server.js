@@ -165,7 +165,7 @@ passport.use(
         from: "Aviso de registro de nuevo usuario <no-reply@example.com>",
         to: `Muy buenas, administrador <${process.env.GMAIL_ADMIN_ADDRESS}>`,
         subject: `nuevo registro`,
-        html: `<h1>AVISO: Se ha registrado el inicio de sesion de un nuevo usuario</h1>
+        html: `<h1>AVISO: Se ha registrado un nuevo usuario</h1>
       <h2>El usuario registrado recientemente ha presentado los siguientes datos:</h2>
       <p>${JSON.stringify(newUser)}</p>
       `,
@@ -280,7 +280,6 @@ if (MODO === "cluster" && cluster.isPrimary) {
     })
   );
 
-    //!reponer isauth y borrar supuesto cliente
   app.get("/",isAuth, (req, res) => {
     cProds.getAll().then((prods) => {
       const infoUser = usuarios.find(

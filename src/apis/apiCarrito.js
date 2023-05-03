@@ -29,18 +29,6 @@ const getByClientCarrito = (req, res) =>{
     })
 }
 
-/*const getCarrito = (req, res) =>{
-    const {emailC} = req. params
-    DBCarritos.getById(id)
-    .then(data =>{
-        if (data != undefined){
-            res.send(data.productos)
-            return
-        }
-        res.send({error: -2, descripcion: 'el carrito pedido no existe'})
-    })
-}*/
-
 const postProdCarrito = (req, res) =>{
     const {emailC, idprod} = req.params
     DBCarritos.addProdCarrito(emailC, idprod)
